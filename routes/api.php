@@ -56,10 +56,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // });
 
 
+
+
+Route::resource('expenses', ApiExpenseController::class);
 Route::post('expenses/{id}', function (Request $request, $id) {
     $expense = Expense::find($id);
     $expense->update($request->all());
     $expense->save();
     return $expense;
 });
-Route::resource('expenses', ApiExpenseController::class);
