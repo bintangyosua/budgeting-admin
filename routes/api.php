@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ApiExpenseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Expense;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,47 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::get('/expenses', function (Request $request) {
+//     return Expense::all();
+// });
+
+// Route::post('/expenses', function (Request $request) {
+//     $expense = new Expense;
+
+//     $expense->date = $request->date;
+//     $expense->amount = $request->amount;
+//     $expense->category = $request->category;
+//     $expense->description = $request->description;
+//     $expense->wallet = $request->wallet;
+//     $expense->userid = $request->userid;
+
+//     $expense->save();
+
+//     return Expense::all();
+// });
+
+// Route::put('/expenses/{id}', function (Request $request, $id) {
+//     $expense = Expense::find($id);
+
+//     $expense->update($request->all());
+
+//     return Expense::find($request->id);
+// });
+
+// Route::get('expenses/{expense}', function (Expense $expense) {
+//     return $expense;
+// });
+
+// Route::put('expenses/{expense}', function ($id, Expense $expense) {
+//     return $expense;
+// });
+
+
+Route::post('expenses/{id}', function (Request $request, $id) {
+    $expense = Expense::find($id);
+    $expense->update($request->all());
+    $expense->save();
+    return $expense;
+});
+Route::resource('expenses', ApiExpenseController::class);
