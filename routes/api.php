@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\ApiExpenseController;
+use App\Http\Controllers\ApiTransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Expense;
+use App\Models\Transaction;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,10 +58,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::resource('expenses', ApiExpenseController::class);
-Route::post('expenses/{id}', function (Request $request, $id) {
-    $expense = Expense::find($id);
-    $expense->update($request->all());
-    $expense->save();
-    return $expense;
+Route::resource('transactions', ApiTransactionController::class);
+Route::post('transactions/{id}', function (Request $request, $id) {
+    $transaction = Transaction::find($id);
+    $transaction->update($request->all());
+    $transaction->save();
+    return $transaction;
 });

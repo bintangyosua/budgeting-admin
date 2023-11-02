@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expense;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use PHPUnit\Event\Tracer\Tracer;
 
-class ApiExpenseController extends Controller
+class ApiTransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class ApiExpenseController extends Controller
     public function index()
     {
         //
-        return Expense::all();
+        return Transaction::all();
     }
 
     /**
@@ -28,18 +29,11 @@ class ApiExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        $expense = new Expense;
+        $transaction = new Transaction;
+        $transaction->create($request->all());
+        $transaction->save();
 
-        $expense->date = $request->date;
-        $expense->amount = $request->amount;
-        $expense->category = $request->category;
-        $expense->description = $request->description;
-        $expense->wallet = $request->wallet;
-        $expense->userid = $request->userid;
-
-        $expense->save();
-
-        return Expense::all();
+        return Transaction::all();
     }
 
     /**
@@ -47,13 +41,13 @@ class ApiExpenseController extends Controller
      */
     public function show($id)
     {
-        return Expense::find($id);
+        return Transaction::find($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Expense $expense)
+    public function edit(Transaction $transaction)
     {
         //
     }
@@ -71,8 +65,8 @@ class ApiExpenseController extends Controller
      */
     public function destroy($id)
     {
-        $expense = Expense::find($id);
+        $expense = Transaction::find($id);
         $expense->delete();
-        return Expense::all();
+        return Transaction::all();
     }
 }
