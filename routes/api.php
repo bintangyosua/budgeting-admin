@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\WalletController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CategoryTypeController;
+use App\Http\Controllers\Api\WalletController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Transaction;
@@ -35,7 +37,9 @@ Route::post('transactions/{id}', function (Request $request, $id) {
 
 Route::resource('wallets', WalletController::class);
 
-// Route::resource('categories', ::class);
+Route::resource('categories', CategoryController::class);
+
+Route::resource('category_types', CategoryTypeController::class);
 
 Route::resource('users', UserController::class);
 Route::post('users/{id}', [UserController::class, 'update']);
