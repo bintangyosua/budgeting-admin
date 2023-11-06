@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Transaction;
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
-use PHPUnit\Event\Tracer\Tracer;
+use Illuminate\Support\Facades\DB;
 
-class ApiTransactionController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        return Transaction::all();
+        return User::all();
     }
 
     /**
@@ -29,11 +29,13 @@ class ApiTransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $transaction = new Transaction;
-        $transaction->create($request->all());
-        $transaction->save();
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
 
-        return Transaction::all();
+        return User::all();
     }
 
     /**
@@ -41,13 +43,13 @@ class ApiTransactionController extends Controller
      */
     public function show($id)
     {
-        return Transaction::find($id);
+        return User::find($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transaction $transaction)
+    public function edit(User $user)
     {
         //
     }
@@ -55,18 +57,16 @@ class ApiTransactionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
-        return $request->all();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $expense = Transaction::find($id);
-        $expense->delete();
-        return Transaction::all();
+        //
     }
 }
