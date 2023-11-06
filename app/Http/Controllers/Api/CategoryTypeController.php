@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Transaction;
+use App\Http\Controllers\Controller;
+use App\Models\CategoryType;
 use Illuminate\Http\Request;
-use PHPUnit\Event\Tracer\Tracer;
 
-class ApiTransactionController extends Controller
+class CategoryTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        return Transaction::all();
+        return CategoryType::all();
     }
 
     /**
@@ -22,6 +21,7 @@ class ApiTransactionController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -29,25 +29,21 @@ class ApiTransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $transaction = new Transaction;
-        $transaction->create($request->all());
-        $transaction->save();
-
-        return Transaction::all();
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(CategoryType $categoryType)
     {
-        return Transaction::find($id);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transaction $transaction)
+    public function edit(CategoryType $categoryType)
     {
         //
     }
@@ -55,18 +51,16 @@ class ApiTransactionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, CategoryType $categoryType)
     {
-        return $request->all();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(CategoryType $categoryType)
     {
-        $expense = Transaction::find($id);
-        $expense->delete();
-        return Transaction::all();
+        //
     }
 }
