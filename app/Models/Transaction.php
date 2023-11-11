@@ -10,9 +10,20 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    // protected $attributes = [
-    //     "date" => DB::raw('CURRENT_TIMESTAMP'),
-    // ];
+    protected $guarded = ['id'];
 
-    protected $fillable = ['date', 'amount', 'category_id', 'description', 'wallet_id', 'user_id'];
+    public function wallet()
+    {
+        return $this->belongsTo(Wallet::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
