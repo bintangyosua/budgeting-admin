@@ -36,10 +36,10 @@ class UserController extends Controller
         $user->password = $request->password;
         $user->save();
 
-        $user_role = new UserRole;
-        $user_role->user_id = $user->id;
-        $user_role->role_id = 2;
-        $user_role->save();
+        // $user_role = new UserRole;
+        // $user_role->user_id = $user->id;
+        // $user_role->role_id = 2;
+        // $user_role->save();
 
         return User::all();
     }
@@ -47,9 +47,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($email)
     {
-        return User::find($id);
+        return User::where("email", "=", $email)->firstOrFail();
     }
 
     /**
