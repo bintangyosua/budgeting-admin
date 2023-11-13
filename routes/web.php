@@ -31,3 +31,6 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('role_user', [RoleUserController::class, 'index']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
