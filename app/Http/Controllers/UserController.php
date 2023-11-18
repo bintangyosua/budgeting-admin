@@ -24,7 +24,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request, User $user, Role $role)
+    public function update(Request $request, User $user)
     {
         $validatedData = $request->validate([
             'name' => 'required',

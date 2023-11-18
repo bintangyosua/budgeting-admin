@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\CategoryController as NonAPICategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,11 +26,15 @@ Route::get('/', function () {
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'update']);
 Route::get('/users/{user}/edit', [UserController::class, 'edit']);
-
-
-Route::get('/categories', [CategoryController::class, 'index']);
-
 Route::post('/users/{user}/update', [UserController::class, 'update']);
+
+
+Route::get('/categories', [NonAPICategoryController::class, 'index']);
+Route::post('/categories/create', [NonAPICategoryController::class, 'store']);
+Route::get('/categories/create', [NonAPICategoryController::class, 'create']);
+Route::get('/categories/{category}/edit', [NonAPICategoryController::class, 'edit']);
+Route::post('/categories/{category}/update', [NonAPICategoryController::class, 'update']);
+
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
