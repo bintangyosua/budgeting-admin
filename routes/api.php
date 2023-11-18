@@ -44,5 +44,6 @@ Route::resource('category_types', CategoryTypeController::class);
 Route::resource('users', UserController::class);
 Route::post('users/{id}', [UserController::class, 'update']);
 Route::get('users/{email}/transactions', function (string $email) {
-    return DB::table('users')->join('transactions', 'transactions.user_id', '=', 'users.id')->join('categories', 'categories.id', '=', 'transactions.category_id')->join('category_types', 'category_types.id', '=', 'categories.category_type_id')->where('users.email', $email)->orderByDesc('transactions.created_at')->get();
+    // return DB::table('transactions')->join('categories', 'categories.id', '=', 'transactions.category_id')->join('category_types', 'category_types.id', '=', 'categories.category_type_id')->where('transactions.user_id', $id)->orderByDesc('transactions.created_at')->limit(10)->get();
+    return DB::table('transactions')->join('categories', 'categories.id', '=', 'transactions.category_id')->join('category_types', 'category_types.id', '=', 'categories.category_type_id')->join('users', 'users.id', '=', 'transactions.user_id')->select("transactions.*")->where('users.email', $email)->orderByDesc('transactions.created_at')->limit(10)->get();
 });

@@ -16,4 +16,12 @@ class RoleUserController extends Controller
             'roles' => Role::all()
         ]);
     }
+
+    public function match_role_and_user_id(Request $request)
+    {
+        $user_id = User::where('id', 'user_id')->first();
+        $role_id = Role::where('id', 'role_id')->first();
+
+        $user_id->roles()->attach($role_id->id);
+    }
 }
