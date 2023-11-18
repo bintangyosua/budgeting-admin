@@ -10,18 +10,25 @@
             <th>No.</th>
             <th>Nama</th>
             <th>Email</th>
+            <th>Roles</th>
             <th>Action</th>
         </tr>
     </thead>
 @foreach ($users as $user)
     <tr>
-        <td>{{ $loop->iteration }}</td>
+        @if ($user->name == 'master_admin')
+            @continue
+        @endif
+        <td>{{ $loop->index }}</td>
         <td>{{ $user->name }}</td>
         <td>{{ $user->email }}</td>
         <td>
-            <form action="" method="POST">
-                <input type="submit" value="Edit">
-            </form>
+            @foreach ($user->roles as $role)
+                {{ $role->name }}
+            @endforeach
+        </td>
+        <td>
+            <a href="/users/{{ $user->id }}/edit" class="btn btn-primary">Edit</a>
         </td>
     </tr>
 @endforeach
