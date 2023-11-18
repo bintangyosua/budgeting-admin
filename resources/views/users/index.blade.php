@@ -3,7 +3,7 @@
 
 <h1 style="text-align: left">{{ $title }}</h1>
 
-<div class="table-responsive small col-lg-8">
+<div class="table-responsive small col-lg-8" style="width: 100%">
 <table class="table table-striped table-sm">
     <thead>
         <tr>
