@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         return view('users.edit', [
             'user' => $user,
-            'roles' => $role->all()
+            'roles' => $role->all()->sortBy("user_id")
         ]);
     }
 

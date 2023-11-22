@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -17,6 +18,50 @@ return new class extends Migration
             $table->integer('category_type_id');
             $table->timestamps();
         });
+
+        DB::table("categories")->insert([
+            [
+                "name" => "Food & Beverage",
+                "category_type_id" => 1
+            ],
+            [
+                "name" => "Transportation",
+                "category_type_id" => 1
+            ],
+            [
+                "name" => "Rentals",
+                "category_type_id" => 1
+            ],
+            [
+                "name" => "Water Bill",
+                "category_type_id" => 1
+            ],
+            [
+                "name" => "Phone Bill",
+                "category_type_id" => 1
+            ],
+            [
+                "name" => "Electricity Bill",
+                "category_type_id" => 1
+            ],
+            [
+                "name" => "Gas Bill",
+                "category_type_id" => 1
+            ],
+            [
+                "name" => "Television Bill",
+                "category_type_id" => 1
+            ],
+            [
+                "name" => "Internet Bill",
+                "category_type_id" => 1
+            ],
+            [
+                "name" => "Other Utility Bill",
+                "category_type_id" => 1
+            ],
+
+        ]);
     }
 
     /**
