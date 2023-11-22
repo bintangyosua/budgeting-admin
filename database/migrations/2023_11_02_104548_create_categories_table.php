@@ -60,7 +60,6 @@ return new class extends Migration
                 "name" => "Other Utility Bill",
                 "category_type_id" => 1
             ],
-
         ]);
     }
 

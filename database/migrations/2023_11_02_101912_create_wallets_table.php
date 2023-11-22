@@ -23,7 +23,7 @@ return new class extends Migration
             [
                 [
                     'id' => '1',
-                    'name' => 'Wallet'
+                    'name' => 'Cash'
                 ],
                 [
                     'id' => '2',
