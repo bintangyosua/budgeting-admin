@@ -13,8 +13,11 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->input('email')) {
+            return User::where("email", "=", $request->input('email'))->firstOrFail();
+        }
         return User::all();
     }
 
@@ -47,9 +50,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($email)
+    public function show($id)
     {
-        return User::where("email", "=", $email)->firstOrFail();
+        return User::where("id", "=", $id)->firstOrFail();
     }
 
     /**
