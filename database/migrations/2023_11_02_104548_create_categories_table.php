@@ -57,8 +57,24 @@ return new class extends Migration
                 "category_type_id" => 1
             ],
             [
+                "name" => "Outgoing Transfer",
+                "category_type_id" => 1
+            ],
+            [
                 "name" => "Other Utility Bill",
                 "category_type_id" => 1
+            ],
+            [
+                "name" => "Salary",
+                "category_type_id" => 2
+            ],
+            [
+                "name" => "Other Income",
+                "category_type_id" => 2
+            ],
+            [
+                "name" => "Incoming Transfer",
+                "category_type_id" => 2
             ],
         ]);
     }

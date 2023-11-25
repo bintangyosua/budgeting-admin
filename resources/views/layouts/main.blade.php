@@ -26,6 +26,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/users">Users</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/categories">Categories</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     @auth
@@ -43,7 +46,7 @@
                             </form>
                           </li>
                         </ul>
-                      </li>         
+                      </li>
                     @else
                     <li class="nav-item">
                       <a href="/login" class="nav-link"><i class="bi bi-box-arrow-in-right"></i>
