@@ -7,11 +7,11 @@
 <table class="table table-striped table-sm">
     <thead>
         <tr>
-            <th>No.</th>
-            <th>Nama</th>
-            <th>Email</th>
-            <th>Roles</th>
-            <th>Action</th>
+            <th scope="col">No.</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Email</th>
+            <th scope="col">Roles</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
 @foreach ($users as $user)
@@ -19,7 +19,7 @@
         @if ($user->name == 'master_admin')
             @continue
         @endif
-        <td>{{ $loop->index }}</td>
+        <td scope="col">{{ $loop->index }}</td>
         <td>{{ $user->name }}</td>
         <td>{{ $user->email }}</td>
         <td>
