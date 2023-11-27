@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CategoryType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('category_type_id');
+            $table->foreignIdFor(CategoryType::class)->constrained();
             $table->timestamps();
         });
 

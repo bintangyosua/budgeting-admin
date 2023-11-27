@@ -49,14 +49,15 @@ Route::middleware("guest")->group(function () {
 
 Route::get('/logout', [LoginController::class, 'logout']);
 Route::post('/logout', [LoginController::class, 'logout']);
-Route::get('role_user', [RoleUserController::class, 'index']);
-Route::post('role_user', [RoleUserController::class, 'match_role_and_user_id']);
+
+// Route::get('role_user', [RoleUserController::class, 'index']);
+// Route::post('role_user', [RoleUserController::class, 'match_role_and_user_id']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
 // Google Login
 Route::controller(GoogleController::class)->group(function () {
-    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
-    Route::get('auth/google/callback', 'handleGoogleCallback');
+    Route::get('/auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('/auth/google/callback', 'handleGoogleCallback');
 });

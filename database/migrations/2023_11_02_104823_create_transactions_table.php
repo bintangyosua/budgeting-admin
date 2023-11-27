@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Category;
+use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -16,10 +19,10 @@ return new class extends Migration
             $table->id();
             $table->date('date')->useCurrent()->useCurrentOnUpdate();
             $table->integer('amount');
-            $table->integer('category_id');
+            $table->foreignIdFor(Category::class)->constrained();
             $table->string('description');
-            $table->integer('wallet_id');
-            $table->integer('user_id');
+            $table->foreignIdFOr(Wallet::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
