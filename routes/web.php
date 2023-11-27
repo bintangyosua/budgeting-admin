@@ -24,13 +24,13 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/users', [UserController::class, 'index'])->middleware('admin');
+Route::get('/users', [UserController::class, 'index'])->middleware('admin:admin,master_admin');
 Route::post('/users', [UserController::class, 'update']);
 Route::get('/users/{user}/edit', [UserController::class, 'edit']);
 Route::post('/users/{user}/update', [UserController::class, 'update']);
 
 
-Route::get('/categories', [NonAPICategoryController::class, 'index'])->middleware('admin:master_admin, admin');
+Route::get('/categories', [NonAPICategoryController::class, 'index'])->middleware('admin:master_admin,admin');
 Route::post('/categories/create', [NonAPICategoryController::class, 'store']);
 Route::get('/categories/create', [NonAPICategoryController::class, 'create']);
 Route::get('/categories/{category}/edit', [NonAPICategoryController::class, 'edit']);

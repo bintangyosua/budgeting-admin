@@ -16,13 +16,12 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, ...$roles)
     {
-        dd('Hello');
         if (!auth()->check()) {
             return redirect('/login');
         }
 
         foreach ($roles as $role) {
-            if (auth()->user()->roles == $role) {
+            if (auth()->user()->roles->contains("name", $role)) {
                 return $next($request);
             }
         }
