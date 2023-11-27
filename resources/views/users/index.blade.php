@@ -23,7 +23,7 @@
         <td>{{ $user->name }}</td>
         <td>{{ $user->email }}</td>
         <td>
-            @foreach ($user->roles as $role)
+            @foreach ($user->roles->sortBy('name') as $role)
                 <span class="badge text-bg-dark">{{ $role->name }}</span>
             @endforeach
         </td>
