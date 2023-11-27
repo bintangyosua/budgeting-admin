@@ -12,6 +12,6 @@ class ExpenseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Expense::factory(5)->create();
+        // \App\Models\Expense::factory(5)->create();
     }
 }

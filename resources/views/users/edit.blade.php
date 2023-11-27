@@ -40,9 +40,11 @@
                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                 @endforeach
             </select> --}}
-
+                @if ($user->roles->contains('id', 1))
+                    <input type="hidden" name="checked_roles[]" value="1">
+                @endif
             @foreach($roles as $role)
-                @if ($role->name == 'master_admin')
+                @if ($role->name === "master_admin")
                     @continue
                 @endif
                 <input id="{{ $role->id }}" type="checkbox" value="{{ $role->id }}" name="checked_roles[]" {{ in_array($role->id, $user->roles->pluck('id')->toArray()) ? 'checked' : '' }}>
