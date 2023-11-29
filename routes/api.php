@@ -51,16 +51,17 @@ Route::get('users/{user_id}/transactions', function (Request $request, int $user
     if (($request->input("firstdate")) && ($request->input("lastdate"))) {
         $results = Transaction::join('categories', 'transactions.category_id', '=', 'categories.id')
             ->select(
-                DB::raw('MONTH(transactions.date) as month'),
-                DB::raw('CAST(SUM(CASE WHEN categories.category_type_id = 1 THEN transactions.amount ELSE 0 END) AS CHAR) as sum_category_1'),
-                DB::raw('CAST(SUM(CASE WHEN categories.category_type_id = 2 THEN transactions.amount ELSE 0 END) AS CHAR) as sum_category_2')
+                DB::raw('strftime("%m", transactions.date) as month'),
+                DB::raw('CAST(SUM(CASE WHEN categories.category_type_id = 1 THEN transactions.amount ELSE 0 END) AS TEXT) as sum_category_1'),
+                DB::raw('CAST(SUM(CASE WHEN categories.category_type_id = 2 THEN transactions.amount ELSE 0 END) AS TEXT) as sum_category_2')
             )
             ->where('transactions.user_id', $user_id)
             ->whereBetween('transactions.date', [$request->input("firstdate"), $request->input("lastdate")])
-            ->groupBy(DB::raw('YEAR(transactions.date)'), DB::raw('MONTH(transactions.date)'))
-            ->orderBy(DB::raw('YEAR(transactions.date)'), 'asc')
-            ->orderBy(DB::raw('MONTH(transactions.date)'), 'asc')
+            ->groupBy(DB::raw('strftime("%Y", transactions.date)'), DB::raw('strftime("%m", transactions.date)'))
+            ->orderBy(DB::raw('strftime("%Y", transactions.date)'), 'asc')
+            ->orderBy(DB::raw('strftime("%m", transactions.date)'), 'asc')
             ->get();
+
 
         $data = [];
         foreach ($results as $result) {
